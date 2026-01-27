@@ -9,14 +9,12 @@ import type { VibeRecommendation } from './data/perfumes';
 function App() {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const [apiKey, setApiKey] = useState('');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [result, setResult] = useState<{
     analysis: AnalysisResult;
     recommendation: VibeRecommendation;
   } | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [showApiKeyInput, setShowApiKeyInput] = useState(false);
 
   const handleImageSelect = (file: File, preview: string) => {
     setSelectedImage(file);
@@ -31,18 +29,12 @@ function App() {
       return;
     }
 
-    if (!apiKey) {
-      setShowApiKeyInput(true);
-      setError('Anthropic API 키를 입력해주세요.');
-      return;
-    }
-
     setIsAnalyzing(true);
     setError(null);
 
     try {
       const base64 = await imageToBase64(selectedImage);
-      const analysis = await analyzeImage(base64, apiKey);
+      const analysis = await analyzeImage(base64);
       const recommendation = perfumeDatabase[analysis.vibe];
 
       setResult({
@@ -54,7 +46,7 @@ function App() {
       setError(
         err instanceof Error
           ? err.message
-          : '분석 중 오류가 발생했습니다. API 키를 확인해주세요.'
+          : '분석 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.'
       );
     } finally {
       setIsAnalyzing(false);
@@ -76,36 +68,6 @@ function App() {
             AI가 당신의 분위기를 분석하여 가장 어울리는 니치 향수를 추천합니다
           </p>
         </div>
-
-        {/* API 키 입력 */}
-        {showApiKeyInput && (
-          <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-6 space-y-4">
-            <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                Anthropic API Key
-              </label>
-              <input
-                type="password"
-                value={apiKey}
-                onChange={(e) => setApiKey(e.target.value)}
-                placeholder="sk-ant-..."
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none transition-colors"
-              />
-              <p className="text-xs text-gray-500">
-                API 키는{' '}
-                <a
-                  href="https://console.anthropic.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-purple-600 hover:underline"
-                >
-                  Anthropic Console
-                </a>
-                에서 발급받을 수 있습니다. 브라우저에 저장되지 않습니다.
-              </p>
-            </div>
-          </div>
-        )}
 
         {/* 이미지 업로드 */}
         {!result && (
