@@ -1,0 +1,194 @@
+import { useState } from 'react';
+import { ImageUpload } from './components/ImageUpload';
+import { PerfumeResults } from './components/PerfumeResults';
+import { analyzeImage, imageToBase64 } from './services/aiAnalysis';
+import type { AnalysisResult } from './services/aiAnalysis';
+import { perfumeDatabase } from './data/perfumes';
+import type { VibeRecommendation } from './data/perfumes';
+
+function App() {
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [apiKey, setApiKey] = useState('');
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [result, setResult] = useState<{
+    analysis: AnalysisResult;
+    recommendation: VibeRecommendation;
+  } | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [showApiKeyInput, setShowApiKeyInput] = useState(false);
+
+  const handleImageSelect = (file: File, preview: string) => {
+    setSelectedImage(file);
+    setPreviewUrl(preview);
+    setResult(null);
+    setError(null);
+  };
+
+  const handleAnalyze = async () => {
+    if (!selectedImage) {
+      setError('사진을 먼저 선택해주세요.');
+      return;
+    }
+
+    if (!apiKey) {
+      setShowApiKeyInput(true);
+      setError('Anthropic API 키를 입력해주세요.');
+      return;
+    }
+
+    setIsAnalyzing(true);
+    setError(null);
+
+    try {
+      const base64 = await imageToBase64(selectedImage);
+      const analysis = await analyzeImage(base64, apiKey);
+      const recommendation = perfumeDatabase[analysis.vibe];
+
+      setResult({
+        analysis,
+        recommendation,
+      });
+    } catch (err) {
+      console.error(err);
+      setError(
+        err instanceof Error
+          ? err.message
+          : '분석 중 오류가 발생했습니다. API 키를 확인해주세요.'
+      );
+    } finally {
+      setIsAnalyzing(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto space-y-8">
+        {/* 헤더 */}
+        <div className="text-center space-y-4">
+          <h1 className="text-5xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
+            Scent Match
+          </h1>
+          <p className="text-xl text-gray-600">
+            당신의 사진으로 완벽한 향수를 찾아드립니다
+          </p>
+          <p className="text-sm text-gray-500">
+            AI가 당신의 분위기를 분석하여 가장 어울리는 니치 향수를 추천합니다
+          </p>
+        </div>
+
+        {/* API 키 입력 */}
+        {showApiKeyInput && (
+          <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-6 space-y-4">
+            <div className="space-y-2">
+              <label className="block text-sm font-semibold text-gray-700">
+                Anthropic API Key
+              </label>
+              <input
+                type="password"
+                value={apiKey}
+                onChange={(e) => setApiKey(e.target.value)}
+                placeholder="sk-ant-..."
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none transition-colors"
+              />
+              <p className="text-xs text-gray-500">
+                API 키는{' '}
+                <a
+                  href="https://console.anthropic.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-purple-600 hover:underline"
+                >
+                  Anthropic Console
+                </a>
+                에서 발급받을 수 있습니다. 브라우저에 저장되지 않습니다.
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* 이미지 업로드 */}
+        {!result && (
+          <>
+            <ImageUpload onImageSelect={handleImageSelect} previewUrl={previewUrl} />
+
+            {/* 분석 버튼 */}
+            {previewUrl && (
+              <div className="text-center">
+                <button
+                  onClick={handleAnalyze}
+                  disabled={isAnalyzing}
+                  className="px-12 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-lg font-semibold rounded-full hover:from-purple-700 hover:to-pink-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105"
+                >
+                  {isAnalyzing ? (
+                    <span className="flex items-center gap-3">
+                      <svg
+                        className="animate-spin h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        />
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        />
+                      </svg>
+                      AI가 분석 중입니다...
+                    </span>
+                  ) : (
+                    '향수 추천받기'
+                  )}
+                </button>
+              </div>
+            )}
+
+            {/* 에러 메시지 */}
+            {error && (
+              <div className="max-w-2xl mx-auto bg-red-50 border-2 border-red-200 rounded-lg p-4 text-red-700">
+                {error}
+              </div>
+            )}
+          </>
+        )}
+
+        {/* 결과 표시 */}
+        {result && (
+          <div className="space-y-6">
+            <PerfumeResults
+              recommendation={result.recommendation}
+              reasoning={result.analysis.reasoning}
+              confidence={result.analysis.confidence}
+            />
+            <div className="text-center">
+              <button
+                onClick={() => {
+                  setResult(null);
+                  setPreviewUrl(null);
+                  setSelectedImage(null);
+                }}
+                className="px-8 py-3 bg-gray-200 text-gray-700 font-semibold rounded-full hover:bg-gray-300 transition-all duration-300"
+              >
+                다시 분석하기
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* 푸터 */}
+        <div className="text-center text-sm text-gray-500 pt-8 border-t border-gray-200">
+          <p>Powered by Claude AI & Fragrantica</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default App;
