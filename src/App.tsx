@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ImageUpload } from './components/ImageUpload';
 import { PerfumeResults } from './components/PerfumeResults';
-import { analyzeImage, imageToBase64 } from './services/aiAnalysis';
+import { analyzeImage } from './services/aiAnalysis';
 import type { AnalysisResult } from './services/aiAnalysis';
 import { perfumeDatabase } from './data/perfumes';
 import type { VibeRecommendation } from './data/perfumes';
@@ -33,8 +33,7 @@ function App() {
     setError(null);
 
     try {
-      const base64 = await imageToBase64(selectedImage);
-      const analysis = await analyzeImage(base64);
+      const analysis = await analyzeImage(selectedImage);
       const recommendation = perfumeDatabase[analysis.vibe];
 
       setResult({
@@ -65,7 +64,7 @@ function App() {
             당신의 사진으로 완벽한 향수를 찾아드립니다
           </p>
           <p className="text-sm text-gray-500">
-            AI가 당신의 분위기를 분석하여 가장 어울리는 니치 향수를 추천합니다
+            이미지 분석으로 당신의 분위기를 파악하여 가장 어울리는 니치 향수를 추천합니다
           </p>
         </div>
 
@@ -103,7 +102,7 @@ function App() {
                           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                         />
                       </svg>
-                      AI가 분석 중입니다...
+                      이미지 분석 중입니다...
                     </span>
                   ) : (
                     '향수 추천받기'
@@ -146,7 +145,7 @@ function App() {
 
         {/* 푸터 */}
         <div className="text-center text-sm text-gray-500 pt-8 border-t border-gray-200">
-          <p>Powered by Claude AI & Fragrantica</p>
+          <p>이미지 색상 분석 기반 향수 추천 서비스</p>
         </div>
       </div>
     </div>
