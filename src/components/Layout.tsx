@@ -26,7 +26,13 @@ export function Layout({ children }: LayoutProps) {
                 to="/"
                 className={`text-sm font-medium transition-colors ${isActive('/') ? 'text-purple-600' : 'text-gray-600 hover:text-purple-600'}`}
               >
-                홈
+                이미지 분석
+              </Link>
+              <Link
+                to="/quiz"
+                className={`text-sm font-medium transition-colors ${isActive('/quiz') ? 'text-purple-600' : 'text-gray-600 hover:text-purple-600'}`}
+              >
+                취향 분석
               </Link>
               <Link
                 to="/about"
@@ -44,6 +50,7 @@ export function Layout({ children }: LayoutProps) {
 
             {/* 모바일 메뉴 */}
             <div className="md:hidden flex items-center space-x-4">
+              <Link to="/quiz" className="text-gray-600 text-sm">취향분석</Link>
               <Link to="/about" className="text-gray-600 text-sm">소개</Link>
               <Link to="/guide" className="text-gray-600 text-sm">가이드</Link>
             </div>
@@ -77,7 +84,12 @@ export function Layout({ children }: LayoutProps) {
               <ul className="space-y-2">
                 <li>
                   <Link to="/" className="text-sm text-gray-600 hover:text-purple-600 transition-colors">
-                    향수 추천받기
+                    이미지 분석
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/quiz" className="text-sm text-gray-600 hover:text-purple-600 transition-colors">
+                    취향 분석
                   </Link>
                 </li>
                 <li>
