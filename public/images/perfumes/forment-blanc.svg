@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 500">
+  <defs>
+    <linearGradient id="bgFB" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F0F0F0"/>
+      <stop offset="50%" style="stop-color:#E0E0E8"/>
+      <stop offset="100%" style="stop-color:#D0D0D8"/>
+    </linearGradient>
+    <linearGradient id="bottleFB" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF"/>
+      <stop offset="100%" style="stop-color:#C8C8D0"/>
+    </linearGradient>
+  </defs>
+  <rect width="375" height="500" fill="url(#bgFB)"/>
+  <rect x="160" y="85" width="55" height="25" rx="3" fill="#808090"/>
+  <rect x="165" y="67" width="45" height="22" rx="2" fill="#9090A0"/>
+  <rect x="147" y="110" width="80" height="270" rx="6" fill="url(#bottleFB)"/>
+  <rect x="155" y="120" width="64" height="250" rx="4" fill="#F8F8FF" opacity="0.5"/>
+  <text x="187" y="252" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="bold" fill="#505060">FORMENT</text>
+  <text x="187" y="272" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#707080">Signature Blanc</text>
+  <ellipse cx="187" cy="420" rx="55" ry="12" fill="#D0D0D8" opacity="0.3"/>
+</svg>

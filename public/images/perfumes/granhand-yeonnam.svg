@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 500">
+  <defs>
+    <linearGradient id="bgGY" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5EDE3"/>
+      <stop offset="50%" style="stop-color:#E8DDD0"/>
+      <stop offset="100%" style="stop-color:#D4C4B0"/>
+    </linearGradient>
+    <linearGradient id="bottleGY" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFF8F0"/>
+      <stop offset="100%" style="stop-color:#C8B49A"/>
+    </linearGradient>
+  </defs>
+  <rect width="375" height="500" fill="url(#bgGY)"/>
+  <rect x="160" y="85" width="55" height="25" rx="3" fill="#8A7560"/>
+  <rect x="165" y="68" width="45" height="22" rx="2" fill="#9E8B74"/>
+  <rect x="142" y="110" width="90" height="265" rx="6" fill="url(#bottleGY)"/>
+  <rect x="150" y="120" width="74" height="245" rx="4" fill="#F0E6D8" opacity="0.5"/>
+  <text x="187" y="245" text-anchor="middle" font-family="Georgia, serif" font-size="12" font-weight="bold" fill="#6B5B4A">GRANHAND</text>
+  <text x="187" y="265" text-anchor="middle" font-family="Georgia, serif" font-size="9" fill="#8A7A68">Yeonnam-dong</text>
+  <text x="187" y="280" text-anchor="middle" font-family="Georgia, serif" font-size="9" fill="#8A7A68">239-20</text>
+  <ellipse cx="187" cy="418" rx="58" ry="12" fill="#D4C4B0" opacity="0.3"/>
+</svg>
