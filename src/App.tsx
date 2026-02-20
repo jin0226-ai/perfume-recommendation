@@ -6,6 +6,8 @@ import { AboutPage } from './pages/AboutPage';
 import { GuidePage } from './pages/GuidePage';
 import { PrivacyPage } from './pages/PrivacyPage';
 import { TermsPage } from './pages/TermsPage';
+import { ContactPage } from './pages/ContactPage';
+import { PerfumeDetailPage } from './pages/PerfumeDetailPage';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Route path="/guide" element={<GuidePage />} />
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/terms" element={<TermsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/perfume/:id" element={<PerfumeDetailPage />} />
         </Routes>
       </Layout>
     </Router>

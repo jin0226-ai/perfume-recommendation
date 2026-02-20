@@ -119,6 +119,11 @@ export function Layout({ children }: LayoutProps) {
                     이용약관
                   </Link>
                 </li>
+                <li>
+                  <Link to="/contact" className="text-sm text-gray-600 hover:text-purple-600 transition-colors">
+                    문의하기
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>

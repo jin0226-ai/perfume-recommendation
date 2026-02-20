@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import type { VibeRecommendation, Perfume } from '../data/perfumes';
 
 interface PerfumeResultsProps {
@@ -125,30 +126,38 @@ const PerfumeCard: React.FC<PerfumeCardProps> = ({ perfume, index }) => {
           {perfume.description}
         </p>
 
-        {/* Fragrantica 링크 */}
-        {perfume.fragranticaUrl && (
-          <a
-            href={perfume.fragranticaUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm text-purple-600 hover:text-purple-700 font-medium"
+        {/* 자세히 보기 + Fragrantica 링크 */}
+        <div className="flex items-center gap-4">
+          <Link
+            to={`/perfume/${perfume.id}`}
+            className="inline-flex items-center gap-1 text-sm text-white bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-2 rounded-full font-medium hover:shadow-lg transition-all duration-300"
           >
-            <span>Fragrantica에서 보기</span>
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+            자세히 보기
+          </Link>
+          {perfume.fragranticaUrl && (
+            <a
+              href={perfume.fragranticaUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-purple-600 hover:text-purple-700 font-medium"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-              />
-            </svg>
-          </a>
-        )}
+              <span>Fragrantica</span>
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
+              </svg>
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );

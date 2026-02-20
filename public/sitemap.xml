@@ -1,33 +1,135 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://randomasset.netlify.app/</loc>
-    <lastmod>2024-01-01</lastmod>
+    <loc>https://perfume-recommendation-omega.vercel.app/</loc>
+    <lastmod>2026-02-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://randomasset.netlify.app/about</loc>
-    <lastmod>2024-01-01</lastmod>
+    <loc>https://perfume-recommendation-omega.vercel.app/quiz</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://perfume-recommendation-omega.vercel.app/about</loc>
+    <lastmod>2026-02-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://randomasset.netlify.app/guide</loc>
-    <lastmod>2024-01-01</lastmod>
+    <loc>https://perfume-recommendation-omega.vercel.app/guide</loc>
+    <lastmod>2026-02-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://randomasset.netlify.app/privacy</loc>
-    <lastmod>2024-01-01</lastmod>
+    <loc>https://perfume-recommendation-omega.vercel.app/contact</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://perfume-recommendation-omega.vercel.app/privacy</loc>
+    <lastmod>2026-02-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://randomasset.netlify.app/terms</loc>
-    <lastmod>2024-01-01</lastmod>
+    <loc>https://perfume-recommendation-omega.vercel.app/terms</loc>
+    <lastmod>2026-02-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://perfume-recommendation-omega.vercel.app/perfume/mfk-baccarat</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://perfume-recommendation-omega.vercel.app/perfume/diptyque-philosykos</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://perfume-recommendation-omega.vercel.app/perfume/tamburins-pumpkin</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://perfume-recommendation-omega.vercel.app/perfume/lelabo-bergamote</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://perfume-recommendation-omega.vercel.app/perfume/byredo-sundazed</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://perfume-recommendation-omega.vercel.app/perfume/912-citrus</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://perfume-recommendation-omega.vercel.app/perfume/pdm-delina</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://perfume-recommendation-omega.vercel.app/perfume/jomalone-peony</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://perfume-recommendation-omega.vercel.app/perfume/tamburins-shell</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://perfume-recommendation-omega.vercel.app/perfume/lelabo-santal33</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://perfume-recommendation-omega.vercel.app/perfume/byredo-gypsy</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://perfume-recommendation-omega.vercel.app/perfume/422-earth</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://perfume-recommendation-omega.vercel.app/perfume/amouage-interlude</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://perfume-recommendation-omega.vercel.app/perfume/tomford-tobacco</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://perfume-recommendation-omega.vercel.app/perfume/pesade-signature</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>
