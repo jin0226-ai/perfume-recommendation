@@ -4,7 +4,6 @@ import {
   ingredients,
   ingredientCategories,
   getCategoryInfo,
-  type Ingredient,
   type IngredientCategory,
 } from '../data/ingredients';
 import { perfumeDatabase, type VibeRecommendation } from '../data/perfumes';
