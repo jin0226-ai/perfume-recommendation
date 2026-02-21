@@ -68,12 +68,18 @@ export function HomePage() {
             이미지 색상 분석 기술을 활용하여 당신의 분위기를 파악하고,
             가장 어울리는 니치 향수를 추천해드립니다. 사진 한 장으로 나만의 시그니처 향을 발견하세요.
           </p>
-          <div className="pt-2">
+          <div className="pt-2 flex flex-wrap gap-3 justify-center">
             <Link
               to="/quiz"
               className="inline-block px-6 py-2 bg-white/60 backdrop-blur-sm border-2 border-purple-300 text-purple-700 font-medium rounded-full hover:bg-purple-50 hover:border-purple-500 transition-all duration-300"
             >
-              📝 사진 없이 취향으로 추천받기
+              📝 취향으로 추천받기
+            </Link>
+            <Link
+              to="/ingredient"
+              className="inline-block px-6 py-2 bg-white/60 backdrop-blur-sm border-2 border-pink-300 text-pink-700 font-medium rounded-full hover:bg-pink-50 hover:border-pink-500 transition-all duration-300"
+            >
+              🌸 향료로 추천받기
             </Link>
           </div>
         </div>

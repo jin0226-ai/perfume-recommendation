@@ -35,6 +35,12 @@ export function Layout({ children }: LayoutProps) {
                 취향 분석
               </Link>
               <Link
+                to="/ingredient"
+                className={`text-sm font-medium transition-colors ${isActive('/ingredient') ? 'text-purple-600' : 'text-gray-600 hover:text-purple-600'}`}
+              >
+                향료 선택
+              </Link>
+              <Link
                 to="/about"
                 className={`text-sm font-medium transition-colors ${isActive('/about') ? 'text-purple-600' : 'text-gray-600 hover:text-purple-600'}`}
               >
@@ -50,8 +56,8 @@ export function Layout({ children }: LayoutProps) {
 
             {/* 모바일 메뉴 */}
             <div className="md:hidden flex items-center space-x-4">
-              <Link to="/quiz" className="text-gray-600 text-sm">취향분석</Link>
-              <Link to="/about" className="text-gray-600 text-sm">소개</Link>
+              <Link to="/quiz" className="text-gray-600 text-sm">취향</Link>
+              <Link to="/ingredient" className="text-gray-600 text-sm">향료</Link>
               <Link to="/guide" className="text-gray-600 text-sm">가이드</Link>
             </div>
           </div>
@@ -90,6 +96,11 @@ export function Layout({ children }: LayoutProps) {
                 <li>
                   <Link to="/quiz" className="text-sm text-gray-600 hover:text-purple-600 transition-colors">
                     취향 분석
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/ingredient" className="text-sm text-gray-600 hover:text-purple-600 transition-colors">
+                    향료 선택
                   </Link>
                 </li>
                 <li>
