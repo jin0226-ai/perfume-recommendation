@@ -52,13 +52,19 @@ export function Layout({ children }: LayoutProps) {
               >
                 향수 가이드
               </Link>
+              <Link
+                to="/blog"
+                className={`text-sm font-medium transition-colors ${location.pathname.startsWith('/blog') ? 'text-purple-600' : 'text-gray-600 hover:text-purple-600'}`}
+              >
+                블로그
+              </Link>
             </div>
 
             {/* 모바일 메뉴 */}
             <div className="md:hidden flex items-center space-x-4">
               <Link to="/quiz" className="text-gray-600 text-sm">취향</Link>
               <Link to="/ingredient" className="text-gray-600 text-sm">향료</Link>
-              <Link to="/guide" className="text-gray-600 text-sm">가이드</Link>
+              <Link to="/blog" className="text-gray-600 text-sm">블로그</Link>
             </div>
           </div>
         </nav>
@@ -111,6 +117,11 @@ export function Layout({ children }: LayoutProps) {
                 <li>
                   <Link to="/about" className="text-sm text-gray-600 hover:text-purple-600 transition-colors">
                     서비스 소개
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/blog" className="text-sm text-gray-600 hover:text-purple-600 transition-colors">
+                    블로그
                   </Link>
                 </li>
               </ul>

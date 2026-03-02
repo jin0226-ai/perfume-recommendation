@@ -111,7 +111,7 @@ export function PrivacyPage() {
               </p>
               <div className="bg-gray-50 rounded-lg p-4">
                 <p className="text-gray-600">
-                  <strong>이메일:</strong> contact@scentmatch.com
+                  <strong>이메일:</strong> scentmatch.help@gmail.com
                 </p>
               </div>
             </section>
@@ -127,10 +127,10 @@ export function PrivacyPage() {
 
             <div className="pt-8 border-t border-gray-200">
               <p className="text-sm text-gray-500">
-                <strong>시행일:</strong> 2024년 1월 1일
+                <strong>시행일:</strong> 2025년 1월 1일
               </p>
               <p className="text-sm text-gray-500 mt-2">
-                <strong>최종 수정일:</strong> 2024년 1월 1일
+                <strong>최종 수정일:</strong> 2026년 3월 1일
               </p>
             </div>
           </div>

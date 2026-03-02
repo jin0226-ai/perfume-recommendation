@@ -9,6 +9,8 @@ import { PrivacyPage } from './pages/PrivacyPage';
 import { TermsPage } from './pages/TermsPage';
 import { ContactPage } from './pages/ContactPage';
 import { PerfumeDetailPage } from './pages/PerfumeDetailPage';
+import { BlogListPage } from './pages/BlogListPage';
+import { BlogPostPage } from './pages/BlogPostPage';
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/perfume/:id" element={<PerfumeDetailPage />} />
+          <Route path="/blog" element={<BlogListPage />} />
+          <Route path="/blog/:slug" element={<BlogPostPage />} />
         </Routes>
       </Layout>
     </Router>
