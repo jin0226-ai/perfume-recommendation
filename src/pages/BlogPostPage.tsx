@@ -1,9 +1,14 @@
+import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getBlogPost, blogPosts } from '../data/blogPosts';
 
 export function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
   const post = slug ? getBlogPost(slug) : undefined;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
 
   if (!post) {
     return (

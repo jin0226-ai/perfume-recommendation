@@ -11,6 +11,7 @@ import { ContactPage } from './pages/ContactPage';
 import { PerfumeDetailPage } from './pages/PerfumeDetailPage';
 import { BlogListPage } from './pages/BlogListPage';
 import { BlogPostPage } from './pages/BlogPostPage';
+import { PerfumeSearchPage } from './pages/PerfumeSearchPage';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/perfume/:id" element={<PerfumeDetailPage />} />
           <Route path="/blog" element={<BlogListPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
+          <Route path="/search" element={<PerfumeSearchPage />} />
         </Routes>
       </Layout>
     </Router>
