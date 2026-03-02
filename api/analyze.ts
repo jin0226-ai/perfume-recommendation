@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import Anthropic from '@anthropic-ai/sdk';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
 interface AnalysisResult {
   vibe: string;
@@ -11,7 +11,6 @@ export default async function handler(
   req: VercelRequest,
   res: VercelResponse
 ) {
-  // CORS 설정
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
@@ -20,13 +19,11 @@ export default async function handler(
     'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
   );
 
-  // OPTIONS 요청 처리 (CORS preflight)
   if (req.method === 'OPTIONS') {
     res.status(200).end();
     return;
   }
 
-  // POST 요청만 허용
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -38,36 +35,22 @@ export default async function handler(
       return res.status(400).json({ error: 'Image data is required' });
     }
 
-    // 환경 변수에서 API 키 가져오기
-    const apiKey = process.env.ANTHROPIC_API_KEY;
-
+    const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
-      console.error('ANTHROPIC_API_KEY is not set in environment variables');
       return res.status(500).json({ error: 'API key is not configured on the server' });
     }
 
-    const anthropic = new Anthropic({
-      apiKey: apiKey,
-    });
+    const genAI = new GoogleGenerativeAI(apiKey);
+    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
-    const message = await anthropic.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
-      max_tokens: 1024,
-      messages: [
-        {
-          role: 'user',
-          content: [
-            {
-              type: 'image',
-              source: {
-                type: 'base64',
-                media_type: 'image/jpeg',
-                data: imageBase64,
-              },
-            },
-            {
-              type: 'text',
-              text: `이 사진 속 인물의 분위기를 분석해서 아래 5가지 중 하나로 분류해주세요:
+    const result = await model.generateContent([
+      {
+        inlineData: {
+          mimeType: 'image/jpeg',
+          data: imageBase64,
+        },
+      },
+      `이 사진 속 인물의 분위기를 분석해서 아래 5가지 중 하나로 분류해주세요:
 
 1. elegant - 우아하고 클래식한 (성숙하고 세련된 이미지, 정돈된 느낌, 모노톤/테일러드 패션)
 2. sporty - 스포티하고 활동적인 (밝고 건강한 이미지, 캐주얼한 패션, 역동적인 느낌)
@@ -81,37 +64,26 @@ export default async function handler(
 - 패션 스타일
 - 전체적인 이미지
 
-응답은 반드시 다음 JSON 형식으로만 답변해주세요:
+응답은 반드시 다음 JSON 형식으로만 답변해주세요 (마크다운 코드블록 없이):
 {
   "vibe": "elegant" | "sporty" | "romantic" | "modern" | "intense",
   "confidence": 0.0~1.0 사이의 숫자,
   "reasoning": "분석 이유를 한국어로 2-3문장"
-}`
-            }
-          ],
-        },
-      ],
-    });
+}`,
+    ]);
 
-    // Claude의 응답에서 JSON 추출
-    const textContent = message.content[0];
-    if (textContent.type !== 'text') {
-      throw new Error('Unexpected response type from Claude');
-    }
-
-    // JSON 파싱
-    const jsonMatch = textContent.text.match(/\{[\s\S]*\}/);
+    const text = result.response.text();
+    const jsonMatch = text.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
-      throw new Error('Could not parse JSON from Claude response');
+      throw new Error('Could not parse JSON from Gemini response');
     }
 
-    const result = JSON.parse(jsonMatch[0]) as AnalysisResult;
-
-    return res.status(200).json(result);
+    const analysisResult = JSON.parse(jsonMatch[0]) as AnalysisResult;
+    return res.status(200).json(analysisResult);
   } catch (error) {
     console.error('Error analyzing image:', error);
     return res.status(500).json({
-      error: error instanceof Error ? error.message : 'Failed to analyze image'
+      error: error instanceof Error ? error.message : 'Failed to analyze image',
     });
   }
 }
